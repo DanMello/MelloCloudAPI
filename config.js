@@ -50,6 +50,9 @@ exports = module.exports = function(app) {
         {
           name : 'MelloCloudAPI',
           script : './index.js',
+          env: {
+            "NODE_ENV": "production",
+          }
         }
       ],
       deploy: {
