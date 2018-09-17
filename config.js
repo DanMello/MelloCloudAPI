@@ -59,7 +59,7 @@ exports = module.exports = function(app) {
           ref: 'origin/master',
           repo: 'https://github.com/DanMello/MelloCloudAPI.git',
           path: '/home/deploy/MelloCloud/MelloCloudAPI',
-          'post-deploy' : 'nvm install && npm install && npm run build && /home/deploy/.nvm/versions/node/v8.11.3/bin/pm2 reload ecosystem.config.js --env production --only MelloCloudAPI'
+          'post-deploy' : 'nvm install && npm install && /home/deploy/.nvm/versions/node/v8.11.3/bin/pm2 reload ecosystem.config.js --env production --only MelloCloudAPI'
         }
       }
     }
