@@ -1,0 +1,42 @@
+server {
+
+  #calling localhost rewrites url to localhost:3000 and proxy passes request to localhost:3000 where i run the react app either in build mode or dev 
+
+  listen 80;
+
+  server_name localhost;
+
+  rewrite  ^/(.*)$  http://$host:3000$request_uri permanent;
+
+  location / {
+    add_header Set-Cookie device=desktop;
+    add_header Set-Cookie enviroment=development;
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_pass http://localhost:3000$request_uri;
+  }
+}
+
+server {
+
+  #this listens for anything coming from 10 which will be my server on the network usually on use for testing on device, 
+  #if its coming from here then i assume its from mobile
+
+  listen 80;
+
+  server_name 10.*;
+
+  rewrite  ^/(.*)$  http://$host:3000$request_uri permanent;
+
+  location / {
+    add_header Set-Cookie device=mobile;
+    add_header Set-Cookie enviroment=development;
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_pass http://localhost:3000$request_uri;
+  }
+}

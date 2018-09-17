@@ -1,0 +1,12 @@
+
+map $http_user_agent $device_category {
+  default "desktop";
+  "~*ipad" "mobile";
+  "~*mobile|phone" "mobile";
+}
+
+#added this to be able to resolve localhost on port 80 in sites-enabled folder
+resolver 127.0.1.1;
+
+this can be found in /etc/resolv.conf
+
