@@ -5,6 +5,8 @@ const bodyParser = require('body-parser')
 const bcrypt = require('bcrypt-nodejs')
 const jwt = require('jsonwebtoken')
 
+require('dotenv').config()
+
 //Export Config
 const Config = require('./config')(app)
 
