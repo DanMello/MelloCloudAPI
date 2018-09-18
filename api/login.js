@@ -1,9 +1,5 @@
 exports.login = function (req, res, next) {
 
-  console.log('request recived')
-
-  let secret = 'legalseafoods'
-
   req.app.db('users')
     .where('email', req.body.email)
     .first()
@@ -17,7 +13,7 @@ exports.login = function (req, res, next) {
 
         let token = req.app.jwt.sign({
           id: user.id
-        }, secret)
+        }, req.app.config.settings[req.app.config.enviroment].tokenSecret)
 
         res.json({
           token,
@@ -28,6 +24,8 @@ exports.login = function (req, res, next) {
       }
 
     }).catch(err => {
+
+      console.log(err)
 
       res.json({
         error: true,

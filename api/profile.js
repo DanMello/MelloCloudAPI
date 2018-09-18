@@ -1,8 +1,6 @@
 exports.getProfile = function (req, res, next) {
 
-  console.log(req.body)
-
-  req.app.jwt.verify(req.body.token, 'legalseafoods', function (err, decoded) {
+  req.app.jwt.verify(req.body.token, req.app.config.settings[req.app.config.enviroment].tokenSecret, function (err, decoded) {
 
     req.app.db('users')
       .where('id', decoded.id)

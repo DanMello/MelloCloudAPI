@@ -7,15 +7,13 @@ exports.signup = function (req, res, next) {
     password: req.app.bcrypt.hashSync(req.body.password)
   }
 
-  let secret = 'legalseafoods'
-
   req.app.db('users')
     .insert(newUser)
     .then(ids => {
 
       let token = req.app.jwt.sign({
         id: ids[0]
-      }, secret)
+      }, req.app.config.settings[req.app.config.enviroment].tokenSecret)
 
       res.json({
         token,
@@ -25,8 +23,6 @@ exports.signup = function (req, res, next) {
       })
 
     }).catch(err => {
-
-      console.log(err)
 
       res.json({
         error: true,

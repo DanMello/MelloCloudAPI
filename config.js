@@ -15,6 +15,7 @@ exports = module.exports = function(app) {
           database: 'mellocloud' // Put your development database name here, for this project
         }
       },
+      tokenSecret: 'legalseafoods'
     },
     production: {
       database: {
@@ -25,7 +26,8 @@ exports = module.exports = function(app) {
           password: process.env.DB_PASSWORD,
           database: process.env.DB_NAME
         }
-      }
+      },
+      tokenSecret: process.env.TOKEN_SECRET
     },
     headers: function (req, res, next) {
 
@@ -36,7 +38,8 @@ exports = module.exports = function(app) {
         res.setHeader("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With")
 
       } else if (enviroment === 'production') {
-        
+
+        res.setHeader('Access-Control-Allow-Origin', '*')
         res.setHeader("Access-Control-Allow-Methods", "GET,POST")
         res.setHeader("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With")
       }
