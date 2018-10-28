@@ -1,8 +1,13 @@
 exports.signup = function (req, res, next) {
 
+  let firstLetterUpperCase = function(string) {
+
+    return string.charAt(0).toUpperCase() + string.slice(1)
+  }
+
   let newUser = {
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
+    first_name: firstLetterUpperCase(req.body.firstName),
+    last_name: firstLetterUpperCase(req.body.lastName),
     email: req.body.email.toLowerCase(),
     password: req.app.bcrypt.hashSync(req.body.password)
   }
@@ -15,18 +20,15 @@ exports.signup = function (req, res, next) {
         id: ids[0]
       }, req.app.config.settings[req.app.config.enviroment].tokenSecret)
 
-      res.json({
+      return res.json({
         token,
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        email: req.body.email
+        first_name: newUser.first_name,
+        last_name: newUser.last_name,
+        email: newUser.email
       })
 
     }).catch(err => {
 
-      res.json({
-        error: true,
-        message: "There was a problem creating your account, please try again in a few minutes"
-      })
+      return res.status(500).send(err.message)
     })
 }

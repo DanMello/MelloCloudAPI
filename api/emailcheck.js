@@ -1,5 +1,7 @@
 exports.checkEmail = function (req, res, next) {
 
+  console.log(req.body)
+
   let email = req.body.email.toLowerCase()
 
   req.app.db('users')
@@ -7,23 +9,20 @@ exports.checkEmail = function (req, res, next) {
     .first()
     .then(user => {
 
-      if (user) 
-      	return res.json({
-          error: true, 
-          message: 'That email is already being used'
-        })
-      else 
-      	return res.json({
-          error: false
-        })
+      if (user) {
+        
+        return res.status(400).send('That email is already being used.')
+
+      } else {
+
+      	return res.send('That email is available!')
+      }
 
     }).catch(err => {
 
-      console.log(err)
-
-      res.json({
-        error: true, 
-        message: 'Something went wrong trying to check your email, please try again'
+      return res.status(500).json({
+        message: err.message,
+        type: 'Internal'
       })
     })
 }

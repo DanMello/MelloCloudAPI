@@ -36,6 +36,8 @@ DELETE FROM users; //deletes all columns from that table
 
 INSERT INTO users(first_name,last_name,username,email) VALUES('Dan', 'Mello', 'jdanmello', 'jdanmello@gmail.com');
 
-UPDATE users SET password = '$2a$10$OQX2wdqX06e9cNgDQyWbAee0iTaq1tU/lm6lgm71Qlu1oHez2G0.a' WHERE email = 'jdanmello@gmail.com';
+UPDATE users SET password = '$2a$10$HP2tLMgTYjuAc5qbp9bmGON3uaOPJgnZXedGGQoKVZEqnSYV3k4Pa' WHERE email = 'jdanmello@gmail.com';
 
 DELETE FROM users WHERE id = 64;
+
+$2a$10$HP2tLMgTYjuAc5qbp9bmGON3uaOPJgnZXedGGQoKVZEqnSYV3k4Pa

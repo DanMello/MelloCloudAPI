@@ -6,8 +6,8 @@ exports.login = function (req, res, next) {
     .then(user => {
 
       if (!user || !req.app.bcrypt.compareSync(req.body.password, user.password)) {
-      
-        res.json({error: true, message: 'Invalid email and password combination'})
+
+        return res.status(400).send('Invalid email and password combination.')
       
       } else {
 
@@ -15,7 +15,7 @@ exports.login = function (req, res, next) {
           id: user.id
         }, req.app.config.settings[req.app.config.enviroment].tokenSecret)
 
-        res.json({
+        return res.json({
           token,
           first_name: user.first_name,
           last_name: user.last_name,
@@ -25,11 +25,6 @@ exports.login = function (req, res, next) {
 
     }).catch(err => {
 
-      console.log(err)
-
-      res.json({
-        error: true,
-        message: "There was a problem logging into your account, please try again in a few minutes"
-      })
+      return res.status(500).send(err.message)
     })
 }
