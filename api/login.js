@@ -1,5 +1,7 @@
 exports.login = function (req, res, next) {
 
+  console.log('login', req.body)
+
   req.app.db('users')
     .where('email', req.body.email)
     .first()
@@ -24,6 +26,8 @@ exports.login = function (req, res, next) {
       }
 
     }).catch(err => {
+
+      console.log(err)
 
       return res.status(500).send(err.message)
     })
