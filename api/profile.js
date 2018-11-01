@@ -7,7 +7,7 @@ exports.getProfile = function (req, res, next) {
       .first()
       .then(user => {
 
-        if (!user) throw new Error('Invalid Token')
+        if (!user) return res.status(400).send('Invalid Token')
 
         res.json({
           id: user.id,
@@ -18,10 +18,7 @@ exports.getProfile = function (req, res, next) {
 
       }).catch(err => {
 
-        res.json({
-          error: true,
-          message: err.message
-        })
+        return res.status(500).send(err.message)
       })
   })
 }

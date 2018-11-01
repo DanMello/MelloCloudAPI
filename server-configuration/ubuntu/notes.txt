@@ -1,0 +1,19 @@
+# installation for c applications
+
+tar -xzvf example.tar.gz
+
+./configure
+
+make
+
+sudo make install
+
+# allowing permission for sh 
+
+chmod +x deploy.sh
+
+#delete .git
+
+rm -rf .git 
+
+then delete folder 

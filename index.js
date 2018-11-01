@@ -26,6 +26,7 @@ app.bcrypt = bcrypt
 //json web token
 app.jwt = jwt
 
+app.use(express.static('public'))
 app.use(Config.settings.headers)
 app.use(bodyParser.json(Config.settings.jsonParser))
 app.use(bodyParser.urlencoded(Config.settings.urlencodedParser))
