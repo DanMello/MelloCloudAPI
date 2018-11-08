@@ -9,6 +9,9 @@
 # production
 /build
 
+#Pdf files
+/public/pdf
+
 # misc
 .DS_Store
 .env.local
