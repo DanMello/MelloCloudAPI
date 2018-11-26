@@ -1,21 +1,23 @@
+const bcrypt = require('bcrypt-nodejs')
+const jwt = require('jsonwebtoken')
+const db = require('../helpers/database').connection
+
 exports.login = function (req, res, next) {
 
-  console.log('login', req.body)
-
-  req.app.db('users')
+  db('users')
     .where('email', req.body.email)
     .first()
     .then(user => {
 
-      if (!user || !req.app.bcrypt.compareSync(req.body.password, user.password)) {
+      if (!user || !bcrypt.compareSync(req.body.password, user.password)) {
 
         return res.status(400).send('Invalid email and password combination.')
       
       } else {
 
-        let token = req.app.jwt.sign({
+        const token = jwt.sign({
           id: user.id
-        }, req.app.config.settings[req.app.config.enviroment].tokenSecret)
+        }, process.env.TOKEN_SECRET)
 
         return res.json({
           token,

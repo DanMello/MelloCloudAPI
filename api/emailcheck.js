@@ -1,10 +1,10 @@
+const db = require('../helpers/database').connection
+
 exports.checkEmail = function (req, res, next) {
 
-  console.log(req.body)
+  const email = req.body.email.toLowerCase()
 
-  let email = req.body.email.toLowerCase()
-
-  req.app.db('users')
+  db('users')
     .where('email', email)
     .first()
     .then(user => {

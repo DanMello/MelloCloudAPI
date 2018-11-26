@@ -1,8 +1,11 @@
+const jwt = require('jsonwebtoken')
+const db = require('../helpers/database').connection
+
 exports.getProfile = function (req, res, next) {
 
-  req.app.jwt.verify(req.body.token, req.app.config.settings[req.app.config.enviroment].tokenSecret, function (err, decoded) {
+  jwt.verify(req.body.token, process.env.TOKEN_SECRET, function (err, decoded) {
 
-    req.app.db('users')
+    db('users')
       .where('id', decoded.id)
       .first()
       .then(user => {
