@@ -3,7 +3,7 @@ const db = require('../helpers/database').connection
 const FLUP = require('../helpers/stringfunctions').firstLetterUpperCase
 const jwt = require('jsonwebtoken')
 
-exports.signup = function (req, res, next) {
+exports.init = function (req, res, next) {
 
   const newUser = {
     first_name: FLUP(req.body.firstName),
@@ -24,7 +24,8 @@ exports.signup = function (req, res, next) {
         token,
         first_name: newUser.first_name,
         last_name: newUser.last_name,
-        email: newUser.email
+        email: newUser.email,
+        isVerified: 0
       })
 
     }).catch(err => {

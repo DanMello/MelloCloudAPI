@@ -1,6 +1,6 @@
 const nodemailer = require('../helpers/nodemailer').nodemailer
 
-exports.message = function (req, res, next) {
+exports.init = function (req, res, next) {
 
   const message = "From " + req.body.name + "<br>" + req.body.email + "<br>" + req.body.message
 

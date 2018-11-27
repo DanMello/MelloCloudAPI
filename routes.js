@@ -2,8 +2,10 @@
 exports = module.exports = function(app) {
 
   //api post routes
-  app.post('/account/login', require('./api/login').login)
-  app.post('/account/signup', require('./api/signup').signup)
-  app.post('/account/signup/emailCheck', require('./api/emailcheck').checkEmail)
-  app.post('/account/contact', require('./api/contact').message)
+  app.post('/account/login', require('./apiroutes/login').init)
+  app.post('/account/signup', require('./apiroutes/signup').init)
+  app.post('/account/signup/emailCheck', require('./apiroutes/checkIfEmailExists').init)
+  app.post('/account/contact', require('./apiroutes/contactMe').init)
+  app.post('/account/forgot', require('./apiroutes/createPasswordResetToken').init)
+  app.post('/account/reset', require('./apiroutes/resetPassword').init)
 }

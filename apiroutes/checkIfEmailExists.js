@@ -1,6 +1,6 @@
 const db = require('../helpers/database').connection
 
-exports.checkEmail = function (req, res, next) {
+exports.init = function (req, res, next) {
 
   const email = req.body.email.toLowerCase()
 

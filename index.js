@@ -20,4 +20,6 @@ app.use(bodyParser.json())
 
 require('./routes')(app)
 
+app.use(require('./apiroutes/errorHandler').init)
+
 app.listen(3001)

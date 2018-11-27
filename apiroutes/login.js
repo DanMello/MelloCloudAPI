@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt-nodejs')
 const jwt = require('jsonwebtoken')
 const db = require('../helpers/database').connection
 
-exports.login = function (req, res, next) {
+exports.init = function (req, res, next) {
 
   db('users')
     .where('email', req.body.email)
@@ -23,7 +23,8 @@ exports.login = function (req, res, next) {
           token,
           first_name: user.first_name,
           last_name: user.last_name,
-          email: user.email
+          email: user.email,
+          isVerified: user.isVerified
         })
       }
 
