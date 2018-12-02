@@ -12,7 +12,13 @@ exports.init = function (req, res, next) {
       .first()
       .then(user => {
 
-        if (!user) return res.status(400).send('Invalid Token')
+        if (!user) {
+
+          throw {
+            message: 'Invalid user token, please log back in.',
+            status: 400
+          }
+        }
 
         let property
 

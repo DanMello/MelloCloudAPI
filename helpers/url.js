@@ -1,17 +1,29 @@
 const enviroment = process.env.NODE_ENV || 'development'
 
-exports.init = function(req, path) {
+exports.init = function(req, path, type) {
 
-  if (enviroment === 'production') {
+  if (enviroment === 'production' && type === 'frontend') {
 
     return `http://mellocloud.com${path}`
 
-  } else if (/10./.test(req.hostname)) {
+  } else if (enviroment === 'production' && type === 'backend') {
+
+    return `http://api.mellocloud.com${path}`
+
+  } else if (/10./.test(req.hostname) && type === 'frontend') {
 
     return `http://${req.hostname}${path}`
 
-  } else {
+  } else if (/10./.test(req.hostname) && type === 'backend') {
+
+    return `http://${req.hostname}:3001${path}`
+
+  } else if (type === 'frontend') {
 
     return `http://${req.hostname}:3000${path}`
+
+  } else if (type === 'backend') {
+
+    return `http://${req.hostname}:3001${path}`
   }
 }

@@ -7,7 +7,7 @@ exports.init = function (req, res, next) {
 
   let passwordToken = {
     token: crypto.randomBytes(16).toString('hex'),
-    expires: Date.now() + 86400000,
+    expires: Date.now() + 10,
     type: 'passwordToken'
   }
   let id
@@ -49,15 +49,7 @@ exports.init = function (req, res, next) {
 
       return
 
-    }).then(result => {
-
-      if (!!result) {
-
-        throw {
-          message: 'Something went wrong please try again.',
-          status: 400
-        }
-      }
+    }).then(() => {
 
       return db('tokens').insert(passwordToken)
 
@@ -71,7 +63,7 @@ exports.init = function (req, res, next) {
         }
       }
 
-      const urlpath = url(req, `/account/reset/${passwordToken.token}`)
+      const urlpath = url(req, `/account/reset/${passwordToken.token}`, 'frontend')
 
       const emailMessage = 
         `Hello there it seems that you (or someone else) has requested to reset your password.\n\n

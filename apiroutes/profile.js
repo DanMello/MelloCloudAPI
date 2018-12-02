@@ -10,7 +10,7 @@ exports.init = function (req, res, next) {
       .first()
       .then(user => {
 
-        if (!user) return res.status(400).send('Invalid Token')
+        if (!user) return res.status(400).send('Invalid user token, please log back in.')
 
         res.json({
           first_name: user.first_name,
