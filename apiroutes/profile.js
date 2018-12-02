@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 const db = require('../helpers/database').connection
 
-exports.getProfile = function (req, res, next) {
+exports.init = function (req, res, next) {
 
   jwt.verify(req.body.token, process.env.TOKEN_SECRET, function (err, decoded) {
 
@@ -13,15 +13,16 @@ exports.getProfile = function (req, res, next) {
         if (!user) return res.status(400).send('Invalid Token')
 
         res.json({
-          id: user.id,
           first_name: user.first_name,
           last_name: user.last_name,
           email: user.email,
+          isVerified: user.isVerified,
+          token: req.body.token
         })
 
       }).catch(err => {
 
-        return res.status(500).send(err.message)
+        next(err)
       })
   })
 }

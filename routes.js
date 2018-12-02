@@ -8,4 +8,6 @@ exports = module.exports = function(app) {
   app.post('/account/contact', require('./apiroutes/contactMe').init)
   app.post('/account/forgot', require('./apiroutes/createPasswordResetToken').init)
   app.post('/account/reset', require('./apiroutes/resetPassword').init)
+  app.post('/account/update', require('./apiroutes/update').init)
+  app.post('/account/getprofile', require('./apiroutes/profile').init)
 }
