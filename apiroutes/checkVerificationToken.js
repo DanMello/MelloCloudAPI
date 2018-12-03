@@ -18,7 +18,8 @@ exports.init = function (req, res, next) {
       if (!token) {
 
         throw {
-          message: 'Invalid email verification token.'
+          message: 'Invalid email verification token',
+          status: 400
         }
       }
 
@@ -36,7 +37,7 @@ exports.init = function (req, res, next) {
       if (result) {
 
         throw {
-          message: 'Email verification token has expired.',
+          message: 'Email verification token has expired',
           status: 400
         }
       }
@@ -55,7 +56,7 @@ exports.init = function (req, res, next) {
       if (!result) {
 
         throw {
-          message: 'There was a problem trying to verify your email token.',
+          message: 'There was a problem trying to verify your email token',
           status: 400
         }
       }
