@@ -7,7 +7,7 @@ exports.init = function (req, res, next) {
 
   let passwordToken = {
     token: crypto.randomBytes(16).toString('hex'),
-    expires: Date.now() + 10,
+    expires: Date.now() + 86400000,
     type: 'passwordToken'
   }
   let id
@@ -83,6 +83,8 @@ exports.init = function (req, res, next) {
       res.send("Password reset instructions sent.")
 
     }).catch(err => {
+
+      console.log(err)
 
       next(err)
     })

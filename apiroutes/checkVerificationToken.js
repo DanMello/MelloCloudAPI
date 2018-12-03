@@ -66,10 +66,7 @@ exports.init = function (req, res, next) {
 
       if (!result) {
 
-        throw {
-          message: 'There was a problem trying to verify your email token.',
-          status: 400
-        }
+        console.log('there was a problem trying to delete verificationEmail token: ' + req.params.token)
       }
 
       res.redirect(url(req, '/?emailVerified=true', 'frontend'))

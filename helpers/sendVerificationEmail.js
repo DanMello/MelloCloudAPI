@@ -3,7 +3,7 @@ const crypto = require('crypto')
 const db = require('./database').connection
 const url = require('./url').init
 
-exports.init = function (req, id, email) {
+exports.init = function (req, id, email, update) {
 
   const emailToken = {
     userid: id,
@@ -19,6 +19,16 @@ exports.init = function (req, id, email) {
     })
     .first()
     .then(token => {
+
+      if (token && update) {
+
+        return db('tokens')
+          .where({
+            userid: id,
+            type: 'verificationEmail'
+          })
+          .del()
+      }
 
       if (token && token.expires > Date.now()) {
 
@@ -38,15 +48,7 @@ exports.init = function (req, id, email) {
           .del()
       }
 
-    }).then(result => {
-
-      if (!!result) {
-
-        throw {
-          message: 'There was a problem sending verification email.',
-          status: 400
-        }
-      }
+    }).then(() => {
 
       return db('tokens').insert(emailToken)
 

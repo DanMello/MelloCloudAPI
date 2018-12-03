@@ -31,7 +31,7 @@ exports.init = function (req, res, next) {
         id: ids[0]
       }, process.env.TOKEN_SECRET)
 
-      return sendVerificationEmail(req, ids[0], newUser.email)
+      return sendVerificationEmail(req, ids[0], newUser.email, false)
 
     }).then(result => {
 

@@ -2,10 +2,13 @@ const bcrypt = require('bcrypt-nodejs')
 const jwt = require('jsonwebtoken')
 const db = require('../helpers/database').connection
 const FLUP = require('../helpers/stringfunctions').firstLetterUpperCase
+const sendVerificationEmail = require('../helpers/sendVerificationEmail').init
 
 exports.init = function (req, res, next) {
 
   jwt.verify(req.body.token, process.env.TOKEN_SECRET, function (err, decoded) {
+
+    let id
 
     db('users')
       .where('id', decoded.id)
@@ -20,12 +23,19 @@ exports.init = function (req, res, next) {
           }
         }
 
-        let property
+        id = user.id
 
         if (req.body.property === 'password') {
 
           property = {
             password: bcrypt.hashSync(req.body.password)
+          }
+
+        } else if (req.body.property === 'email') {
+
+          property = {
+            email: req.body.email,
+            isVerified: 0
           }
 
         } else {
@@ -36,7 +46,7 @@ exports.init = function (req, res, next) {
         }
 
         return db('users')
-          .where('id', user.id)
+          .where('id', id)
           .update(property)
 
       }).then(result => {
@@ -49,9 +59,20 @@ exports.init = function (req, res, next) {
           }
         }
 
+        if (req.body.property === 'email') {
+
+          return sendVerificationEmail(req, id, req.body.email, true)
+        }
+
+        return
+
+      }).then(() => {
+
         res.send(`${FLUP(req.body.heading)} has been updated successfully.`)
 
       }).catch(err => {
+
+        console.log(err.message)
 
         next(err)
       })

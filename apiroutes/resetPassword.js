@@ -15,6 +15,7 @@ exports.init = function (req, res, next) {
     .then(token => {
 
       if (!token) {
+
         throw {
           message: 'Token not found.',
           status: 400
@@ -99,6 +100,8 @@ exports.init = function (req, res, next) {
       res.send('Password has been changed successfully.')
 
     }).catch(err => {
+
+      console.log(err.message)
 
       next(err)
     })
