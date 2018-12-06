@@ -3,7 +3,9 @@ const db = require('../helpers/database').connection
 
 exports.init = function (req, res, next) {
 
-  jwt.verify(req.body.token, process.env.TOKEN_SECRET, function (err, decoded) {
+  let token = req.body.token || req.params.token
+  
+  jwt.verify(token, process.env.TOKEN_SECRET, function (err, decoded) {
 
     db('users')
       .where('id', decoded.id)
@@ -17,7 +19,7 @@ exports.init = function (req, res, next) {
           last_name: user.last_name,
           email: user.email,
           isVerified: user.isVerified,
-          token: req.body.token
+          token: token
         })
 
       }).catch(err => {
