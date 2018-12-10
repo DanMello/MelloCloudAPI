@@ -5,6 +5,8 @@ exports.init = function (req, res, next) {
 
   jwt.verify(req.body.token, process.env.TOKEN_SECRET, function (err, decoded) {
 
+    let id 
+
     db('users')
       .where('id', decoded.id)
       .first()
@@ -18,9 +20,22 @@ exports.init = function (req, res, next) {
           }
         }
 
+        id = user.id
+
         return db('tokens')
-          .where('userid', decoded.id)
-          .del()
+          .where('userid', id)
+          .first()
+
+      }).then(token => {
+
+        if (token) {
+
+          return db('tokens')
+            .where('userid', id)
+            .del()
+        }
+
+        return 'ok'
 
       }).then(result => {
 
@@ -33,7 +48,7 @@ exports.init = function (req, res, next) {
         }
 
         return db('users')
-          .where('id', decoded.id)
+          .where('id', id)
           .del()
 
       }).then(result => {
