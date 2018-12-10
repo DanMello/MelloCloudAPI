@@ -10,6 +10,7 @@ exports = module.exports = function(app) {
   app.post('/account/reset', require('./apiroutes/resetPassword').init)
   app.post('/account/update', require('./apiroutes/update').init)
   app.post('/account/getprofile', require('./apiroutes/profile').init)
+  app.post('/account/deleteaccount', require('./apiroutes/deleteAccount').init)
   app.post('/account/resendemailtoken', require('./apiroutes/resendVerificationToken').init)
 
   app.get('/account/getprofile/:token', require('./apiroutes/profile').init)

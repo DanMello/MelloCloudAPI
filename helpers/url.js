@@ -4,11 +4,11 @@ exports.init = function(req, path, type) {
 
   if (enviroment === 'production' && type === 'frontend') {
 
-    return `http://mellocloud.com${path}`
+    return `https://mellocloud.com${path}`
 
   } else if (enviroment === 'production' && type === 'backend') {
 
-    return `http://api.mellocloud.com${path}`
+    return `https://api.mellocloud.com${path}`
 
   } else if (/10./.test(req.hostname) && type === 'frontend') {
 
