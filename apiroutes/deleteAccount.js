@@ -69,25 +69,3 @@ exports.init = function (req, res, next) {
       })
   })
 }
-
-  //       return db('users')
-  //         .where('id', decoded.id)
-  //         .del()
-
-  //     }).then(result => {
-
-  //       if (!result) {
-
-  //         throw {
-  //           message: 'Something went wrong trying to delete your account. Maybe try again?',
-  //           status: 400
-  //         }
-  //       }
-
-  //       res.send('Your account has been deleted successfully')
-
-  //     }).catch(err => {
-
-  //       next(err)
-  //     })
-  // })
