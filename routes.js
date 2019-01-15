@@ -12,6 +12,8 @@ exports = module.exports = function(app) {
   app.post('/account/getprofile', require('./apiroutes/profile').init)
   app.post('/account/deleteaccount', require('./apiroutes/deleteAccount').init)
   app.post('/account/resendemailtoken', require('./apiroutes/resendVerificationToken').init)
+  app.post('/account/getprojects', require('./apiroutes/getVideoProjects').init)
+  app.post('/account/getvideos', require('./apiroutes/getVideos').init)
 
   app.get('/account/getprofile/:token', require('./apiroutes/profile').init)
   app.get('/account/verification/:token', require('./apiroutes/checkVerificationToken').init)
