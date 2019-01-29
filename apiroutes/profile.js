@@ -19,6 +19,7 @@ exports.init = function (req, res, next) {
           last_name: user.last_name,
           email: user.email,
           isVerified: user.isVerified,
+          developer: user.developer,
           token: token
         })
 

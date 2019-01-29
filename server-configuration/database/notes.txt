@@ -62,6 +62,8 @@ Usefull commands
 
 ALTER TABLE users ADD first_name VARCHAR(255) AFTER id;
 
+ALTER TABLE users ADD developer bool AFTER oauth_id; //tinyint(1)
+
 ALTER TABLE users DROP COLUMN fullname;
 
 DELETE FROM users; //deletes all columns from that table
@@ -73,3 +75,6 @@ UPDATE users SET password = '$2a$10$HP2tLMgTYjuAc5qbp9bmGON3uaOPJgnZXedGGQoKVZEq
 DELETE FROM users WHERE id = 64;
 
 $2a$10$HP2tLMgTYjuAc5qbp9bmGON3uaOPJgnZXedGGQoKVZEqnSYV3k4Pa
+
+
+INSERT INTO users(developer) VALUES(1);
