@@ -76,5 +76,14 @@ DELETE FROM users WHERE id = 64;
 
 $2a$10$HP2tLMgTYjuAc5qbp9bmGON3uaOPJgnZXedGGQoKVZEqnSYV3k4Pa
 
+//add these two
 
-INSERT INTO users(developer) VALUES(1);
+ALTER TABLE users ADD developer bool AFTER oauth_id;
+UPDATE users SET developer = 1 WHERE email = 'jdanmello@gmail.com';
+
+ALTER TABLE videos ADD videopath VARCHAR(255) AFTER project;
+
+
+INSERT INTO projects(userid,project) VALUES(4,'DansProject');
+
+INSERT INTO videos(userid,video,project,videopath,video_thumbnail) VALUES(4,'DansVideo.mp4','DansProject','/assets/videos/video.mp4','/assets/videos/thumbnail.png');
