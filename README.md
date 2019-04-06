@@ -17,3 +17,5 @@ Back-end for https://www.mellocloud.com which is my personal website.
 6. Learned how to update, delete, add, and get data from databases (mysql) using knex and raw sql code.
 
 7. Leaned how to handle errors and success responses, parse and send json.
+
+8. Learned how to setup https with Let's Encrypt and certbot.
