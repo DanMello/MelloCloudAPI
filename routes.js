@@ -20,12 +20,16 @@ exports = module.exports = function(app) {
   
   app.post('/account/contact', require('./apiroutes/contactMe').init)
   
-  //api for redux-smart-forms
-  app.post('/account/checkemail', require('./redux-smart-forms/checkemail').init)
-  app.post('/thankyou', require('./redux-smart-forms/thankyou').init)
+  //api for react-smart-forms
+  app.post('/account/checkemail', require('./react-simpler-forms/checkemail').init)
+  app.post('/thankyou', require('./react-simpler-forms/thankyou').init)
 
   // server side rendering routes
   app.get('/', require('./ssrRoutes/index').home)
   app.get('/notes', require('./ssrRoutes/index').notes)
+  app.get('/resume', require('./ssrRoutes/index').resume)
+  app.get('/contact', require('./ssrRoutes/index').contact)
+  app.get('/react-simpler-forms', require('./ssrRoutes/index').reactSimplerForms)
+  app.get('/react-video-player', require('./ssrRoutes/index').reactVideoPlayer)
   app.get('*', require('./ssrRoutes/index').init)
 }
