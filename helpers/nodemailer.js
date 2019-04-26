@@ -20,7 +20,7 @@ exports.nodemailer = function(options) {
   };
 
   return new Promise((resolve, reject) => {
-    transporter.sendMail(emailMessage, (err, _) => {
+    transporter.sendMail(emailMessage, (err) => {
       if (err) {
         reject(err);
       } else {

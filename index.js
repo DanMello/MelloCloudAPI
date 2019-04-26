@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 
 app.use(express.static('public'));
-app.use((_, res, next) => {
+app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader("Access-Control-Allow-Methods", "GET,POST");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
@@ -18,5 +18,5 @@ app.use(bodyParser.json());
 
 require('./routes')(app);
 
-app.use(require('./routes/errorHandler').init);
+app.use(require('./apiroutes/errorHandler').init);
 app.listen(3001);

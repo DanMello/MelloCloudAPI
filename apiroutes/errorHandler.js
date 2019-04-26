@@ -1,4 +1,4 @@
-exports.init = function(err, _, res) {
+exports.init = function(err, req, res, next) {
   if (err.status === 400) {
     return res.status(400).send(err.message);
   } else {
