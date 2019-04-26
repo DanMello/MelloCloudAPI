@@ -10,11 +10,8 @@ exports.init = function (req, res) {
     subject: 'Message from mellocloud.com',
     message: message
   }).then(() => {
-
-    return res.send("Message sent!")
-
+    return res.send("Message sent!");
   }).catch(err => {
-
     return res.status(400).send(err.message);
   });
 };

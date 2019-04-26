@@ -1,5 +1,5 @@
-const enviroment = process.env.NODE_ENV || 'development'
-const knex = require('knex')
+const enviroment = process.env.NODE_ENV || 'development';
+const knex = require('knex');
 
 const settings = {
   development: {
@@ -20,6 +20,6 @@ const settings = {
       database: process.env.DB_NAME
     }
   }
-}
+};
 
-exports.connection = knex(settings[enviroment])
+exports.connection = knex(settings[enviroment]);
