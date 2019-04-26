@@ -1,4 +1,4 @@
-const nodemailer = require('nodemailer')
+const nodemailer = require('nodemailer');
 const settings = {
   host: 'smtp.gmail.com',
   port: 465,
@@ -7,8 +7,8 @@ const settings = {
     user: 'jdanmello@gmail.com',
     pass: process.env.EMAIL_PASSWORD
   }
-}
-const transporter = nodemailer.createTransport(settings)
+};
+const transporter = nodemailer.createTransport(settings);
 
 exports.nodemailer = function(options) {
 
@@ -17,20 +17,15 @@ exports.nodemailer = function(options) {
     to: options.to,
     subject: options.subject,
     html: options.message
-  }
+  };
 
   return new Promise((resolve, reject) => {
-
-    transporter.sendMail(emailMessage, (err, info) => {
-
+    transporter.sendMail(emailMessage, (err, _) => {
       if (err) {
-
-        reject(err)
-
+        reject(err);
       } else {
-
-        resolve()
-      }
-    })
-  })
-}
+        resolve();
+      };
+    });
+  });
+};

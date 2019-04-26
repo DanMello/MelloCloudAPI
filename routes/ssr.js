@@ -9,8 +9,8 @@ exports.home = function (_, res) {
     };
 
     let result;
-    let title = 'mellocloud.com: Home of Dan Mello, Web Developer';
-    let description = `"mellocloud.com is the home of Dan Mello a Front-End Developer from Boston, MA."`;
+    let title = 'mellocloud.com (Mello Cloud): Home of Dan Mello, Web Developer';
+    let description = `"mello cloud is the home of Dan Mello a web developer from Boston, MA."`;
 
     data = data.replace(/\$OG_TITLE/g, title);
     result = data.replace(/\$OG_DESCRIPTION/g, description);
@@ -41,8 +41,8 @@ exports.resume = function (_, res) {
     };
 
     let result;
-    let title = 'mellocloud.com: Dan Mello, Front-End Developer resume';
-    let description = `"Dan Mello's resume. Front-End Developer from Boston, MA."`;
+    let title = 'mellocloud.com: Dan Mello, Web Developer Resume';
+    let description = `"Dan Mello's resume. Web developer from Boston, MA."`;
 
     data = data.replace(/\$OG_TITLE/g, title);
     result = data.replace(/\$OG_DESCRIPTION/g, description);
@@ -58,7 +58,7 @@ exports.contact = function (_, res) {
 
     let result;
     let title = 'mellocloud.com: Contact';
-    let description = `"mellocloud.com is the home of Dan Mello a Front-End Developer from Boston, MA."`;
+    let description = `"mellocloud.com is the home of Dan Mello a Web Developer from Boston, MA."`;
 
     data = data.replace(/\$OG_TITLE/g, title);
     result = data.replace(/\$OG_DESCRIPTION/g, description);
