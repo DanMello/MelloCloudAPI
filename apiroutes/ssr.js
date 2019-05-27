@@ -98,6 +98,22 @@ exports.reactVideoPlayer = function (_, res) {
   });
 };
 
+exports.tictactoe = function (_, res) {
+  fs.readFile(filePath, 'utf8', function (err,data) {
+    if (err) {
+      return console.log(err);
+    };
+
+    let result;
+    let title = 'Tic-Tac-Chat : Chat and play tic tac toe online with friends.';
+    let description = `"Tic Tac Chat is an online tic tac toe game that lets you play with friends and chat while you play."`;
+
+    data = data.replace(/\$OG_TITLE/g, title);
+    result = data.replace(/\$OG_DESCRIPTION/g, description);
+    res.send(result);
+  });
+};
+
 exports.init = function (_, res) {
   res.sendFile(filePath);
 };
