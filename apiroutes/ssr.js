@@ -34,6 +34,23 @@ exports.notes = function (_, res) {
   });
 };
 
+exports.notesPDF = function (req, res) {
+  fs.readFile(filePath, 'utf8', function (err,data) {
+    if (err) {
+      return console.log(err);
+    };
+    let result;
+    const name = req.query.file;
+    const nameWithoutNum = name.replace(/-\d{2}/, '');
+    const title = `mellocloud.com: Notes, ${nameWithoutNum}`;
+    const description = `"mellocloud.com web development notes, ${nameWithoutNum}"`;
+
+    data = data.replace(/\$OG_TITLE/g, title);
+    result = data.replace(/\$OG_DESCRIPTION/g, description);
+    res.send(result);
+  });
+};
+
 exports.resume = function (_, res) {
   fs.readFile(filePath, 'utf8', function (err,data) {
     if (err) {
@@ -105,7 +122,7 @@ exports.tictactoe = function (_, res) {
     };
 
     let result;
-    let title = 'Tic-Tac-Chat : Chat and play tic tac toe online with friends.';
+    let title = 'mellocloud.com: Tic-Tac-Chat';
     let description = `"Tic Tac Chat is an online tic tac toe game that lets you play with friends and chat while you play."`;
 
     data = data.replace(/\$OG_TITLE/g, title);
@@ -116,4 +133,20 @@ exports.tictactoe = function (_, res) {
 
 exports.init = function (_, res) {
   res.sendFile(filePath);
+};
+
+exports.tictactoenotes = function (_, res) {
+  fs.readFile(filePath, 'utf8', function (err,data) {
+    if (err) {
+      return console.log(err);
+    };
+
+    let result;
+    let title = 'Tic-Tac-Chat release notes v1.0.0';
+    let description = `"Release notes for tic-tac-chat v1.0.0, a tic tac toe game where you can chat and play tic tac toe with friends."`;
+
+    data = data.replace(/\$OG_TITLE/g, title);
+    result = data.replace(/\$OG_DESCRIPTION/g, description);
+    res.send(result);
+  });
 };

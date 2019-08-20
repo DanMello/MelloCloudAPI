@@ -13,6 +13,8 @@ exports = module.exports = function (app) {
   app.get('/contact', require('./apiroutes/ssr').contact)
   app.get('/react-simpler-forms', require('./apiroutes/ssr').reactSimplerForms)
   app.get('/react-video-player', require('./apiroutes/ssr').reactVideoPlayer)
+  app.get('/pdfviewer', require('./apiroutes/ssr').notesPDF)
   app.get('/tic-tac-chat', require('./apiroutes/ssr').tictactoe)
+  app.get('/tic-tac-chat/notes', require('./apiroutes/ssr').tictactoenotes)
   app.get('*', require('./apiroutes/ssr').init)
 };
