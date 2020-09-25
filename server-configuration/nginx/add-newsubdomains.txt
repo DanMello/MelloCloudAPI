@@ -1,5 +1,4 @@
-certbot-auto --cert-name mellocloud.com -d mellocloud.com -d api.mellocloud.com -d m.mellocloud.com -d www.mellocloud.com -d game.mellocloud.com
-
+certbot-auto --cert-name mellocloud.com -d mellocloud.com -d api.mellocloud.com -d m.mellocloud.com -d www.mellocloud.com -d game.mellocloud.com -d ams.mellocloud.com -d amsm.mellocloud.com
 
 server {
   listen 80 ;
@@ -19,3 +18,5 @@ server {
 
 }
 
+
+certbot --expand -d mellocloud.com -d mellocloud.com -d api.mellocloud.com -d m.mellocloud.com -d www.mellocloud.com -d game.mellocloud.com -d ams.mellocloud.com -d amsm.mellocloud.com --certonly

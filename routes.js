@@ -1,6 +1,7 @@
 exports = module.exports = function (app) {
 
   app.post('/account/contact', require('./apiroutes/contactMe').init)
+  app.post('/zipcodes', require('./apiroutes/zipCode').init)
 
   //api for react-smart-forms
   app.post('/account/checkemail', require('./apiroutes/checkemail').init)
@@ -16,5 +17,6 @@ exports = module.exports = function (app) {
   app.get('/pdfviewer', require('./apiroutes/ssr').notesPDF)
   app.get('/tic-tac-chat', require('./apiroutes/ssr').tictactoe)
   app.get('/tic-tac-chat/notes', require('./apiroutes/ssr').tictactoenotes)
+  app.get('/ams', require('./apiroutes/ams').automotiveShield)
   app.get('*', require('./apiroutes/ssr').init)
 };

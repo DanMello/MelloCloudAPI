@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 
 require('dotenv').config();
 
+app.dirname = __dirname;
+
 app.use(express.static('public'));
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
